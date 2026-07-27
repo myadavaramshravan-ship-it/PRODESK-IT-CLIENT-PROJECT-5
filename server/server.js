@@ -10,16 +10,18 @@ const bookingRoutes = require("./routes/bookingRoutes");
 
 const app = express();
 
+
 // Connect Database
 connectDB();
 
+
 // Middleware
-const cors = require("cors");
 
 const allowedOrigins = [
   "http://localhost:5173",
   "https://prodesk-it-client-project-5.vercel.app"
 ];
+
 
 app.use(
   cors({
@@ -27,29 +29,40 @@ app.use(
     credentials: true
   })
 );
+
+
 app.use(express.json());
 
+
 // Routes
+
 app.use("/api/auth", authRoutes);
+
 app.use("/api/bookings", bookingRoutes);
 
+
 // Health Check
+
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "Mechanic Booking API Running",
+    message: "Mechanic Booking API Running"
   });
 });
 
+
 // 404 Route
+
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    message: "Route not found",
+    message: "Route not found"
   });
 });
 
+
 const PORT = process.env.PORT || 5000;
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
