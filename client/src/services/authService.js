@@ -1,11 +1,15 @@
 import axios from "axios";
 
-const API = `${import.meta.env.VITE_API_URL}/auth`;
+const API = axios.create({
+  baseURL: "https://mechanic-booking.onrender.com/api"
+});
 
-export const registerUser = (data) => {
-  return axios.post(`${API}/register`, data);
-};
 
 export const loginUser = (data) => {
-  return axios.post(`${API}/login`, data);
+  return API.post("/auth/login", data);
+};
+
+
+export const registerUser = (data) => {
+  return API.post("/auth/register", data);
 };
