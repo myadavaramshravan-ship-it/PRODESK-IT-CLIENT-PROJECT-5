@@ -1,21 +1,38 @@
 import axios from "axios";
 
-const API = `${import.meta.env.VITE_API_URL}/bookings`;
-
-const getConfig = () => ({
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
+const API = axios.create({
+  baseURL: "https://mechanic-booking.onrender.com/api"
 });
 
-export const getBookings = (search = "") =>
-  axios.get(`${API}?search=${search}`, getConfig());
 
-export const createBooking = (data) =>
-  axios.post(API, data, getConfig());
+API.interceptors.request.use((config)=>{
 
-export const updateBooking = (id, data) =>
-  axios.put(`${API}/${id}`, data, getConfig());
+  const token = localStorage.getItem("token");
 
-export const deleteBooking = (id) =>
-  axios.delete(`${API}/${id}`, getConfig());
+  if(token){
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+
+});
+
+
+export const getBookings = (search="")=>{
+  return API.get(`/bookings?search=${search}`);
+};
+
+
+export const createBooking = (data)=>{
+  return API.post("/bookings", data);
+};
+
+
+export const updateBooking = (id,data)=>{
+  return API.put(`/bookings/${id}`, data);
+};
+
+
+export const deleteBooking = (id)=>{
+  return API.delete(`/bookings/${id}`);
+};
