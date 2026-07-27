@@ -5,7 +5,7 @@ import SearchBar from "../components/SearchBar";
 import Loader from "../components/Loader";
 import BookingForm from "../components/BookingForm";
 import BookingTable from "../components/BookingTable";
-import StatsCards from "../components/StatsCards";
+import StatsCards from "../components/StatsCard";
 import BookingChart from "../components/BookingChart";
 
 import { getBookings } from "../services/bookingService";

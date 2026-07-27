@@ -1,39 +1,20 @@
-function StatsCards({ bookings }) {
-  const total = bookings.length;
-
-  const pending = bookings.filter(
-    (b) => b.status === "Pending"
-  ).length;
-
-  const progress = bookings.filter(
-    (b) => b.status === "In Progress"
-  ).length;
-
-  const completed = bookings.filter(
-    (b) => b.status === "Completed"
-  ).length;
-
+function StatsCards({ total, pending, completed }) {
   return (
-    <div className="stats-grid">
+    <div className="stats-container">
 
-      <div className="card">
-        <h3>Total</h3>
-        <h1>{total}</h1>
+      <div className="stat-card">
+        <h3>Total Bookings</h3>
+        <p>{total}</p>
       </div>
 
-      <div className="card">
+      <div className="stat-card">
         <h3>Pending</h3>
-        <h1>{pending}</h1>
+        <p>{pending}</p>
       </div>
 
-      <div className="card">
-        <h3>In Progress</h3>
-        <h1>{progress}</h1>
-      </div>
-
-      <div className="card">
+      <div className="stat-card">
         <h3>Completed</h3>
-        <h1>{completed}</h1>
+        <p>{completed}</p>
       </div>
 
     </div>
