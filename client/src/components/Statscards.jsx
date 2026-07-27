@@ -1,4 +1,16 @@
-function StatsCards({ total, pending, completed }) {
+function StatsCards({ bookings }) {
+
+  const total = bookings.length;
+
+  const pending = bookings.filter(
+    (b)=>b.status==="Pending"
+  ).length;
+
+  const completed = bookings.filter(
+    (b)=>b.status==="Completed"
+  ).length;
+
+
   return (
     <div className="stats-container">
 
