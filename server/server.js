@@ -14,13 +14,17 @@ const app = express();
 connectDB();
 
 // Middleware
+const cors = require("cors");
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://prodesk-it-client-project-5.vercel.app"
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://prodesk-it-client-project-5.vercel.app/login",
-    ],
-    credentials: true,
+    origin: allowedOrigins,
+    credentials: true
   })
 );
 app.use(express.json());
